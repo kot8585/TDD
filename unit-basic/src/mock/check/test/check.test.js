@@ -1,10 +1,6 @@
 const check = require('../check');
 
 const mockCallback = jest.fn(() => true);
-//어떤 걸 mock으로 정해야 하는거야? 
-test('check', () => {
-  expect(check(mockCallback, (value) => value, value => value)).toBe('yes');
-})
 
 describe('check', () => {
   let onSuccess;
