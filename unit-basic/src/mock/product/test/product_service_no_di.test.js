@@ -2,6 +2,7 @@ const ProductService = require('../product_service_no_di.js');
 const ProductClient = require('../product_client.js');
 jest.mock('../product_client.js');
 
+//❗️ 이 fetchItems를 다른 모듈 테스트에도 필요한거라면 이 코드는 재사용 성이 떨어진다. 그래서 stub_impl을 만들것이다.
 describe('ellie product test', () => {
   const fetchItems = jest.fn(async () => [
     {items: '🥛', available: true},
