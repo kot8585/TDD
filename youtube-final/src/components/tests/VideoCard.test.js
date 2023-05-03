@@ -1,36 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import { formatAgo } from "../../util/date";
 import VideoCard from "../VideoCard";
+import { fakeVideo as video } from "../../tests/videos";
+import { withRouter } from "../../tests/utils";
 
 describe("VideoCard", () => {
-  const video = {
-    id: 1,
-    snippet: {
-      title: "title",
-      channelId: "1",
-      channelTitle: "channel title",
-      publishedAt: new Date(),
-      thumbnails: {
-        medium: {
-          url: "http://image/",
-        },
-      },
-    },
-  };
+  const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
+
   it("renders video item", () => {
-    //given
     render(
-      <MemoryRouter>
-        <VideoCard video={video} />
-      </MemoryRouter>
+      withRouter(<Route path="/" element={<VideoCard video={video} />} />)
     );
 
-    //when
     const image = screen.getByRole("img");
-    const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
-    //then
     expect(image.src).toBe(thumbnails.medium.url);
     expect(image.alt).toBe(title);
     expect(screen.getByText(title)).toBeInTheDocument();
@@ -43,19 +27,20 @@ describe("VideoCard", () => {
     // - 단위테스트이기 때문
     // - VideoCard 컴포넌트에서도 url만 이동하고 어떤 컴포넌트로 가는지는 나와있지 않기 때문
     //2. 이동한 경로의 컴포넌트에게 video state를 잘 전해줬는지 테스트
+
     function LocationStateDisplay() {
       return <pre>{JSON.stringify(useLocation().state)}</pre>;
     }
     render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Routes>
+      withRouter(
+        <>
           <Route path="/" element={<VideoCard video={video} />} />
           <Route
             path={`/videos/watch/${video.id}`}
             element={<LocationStateDisplay />}
           />
-        </Routes>
-      </MemoryRouter>
+        </>
+      )
     );
 
     const card = await screen.findByRole("listitem");
