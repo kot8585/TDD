@@ -5,9 +5,28 @@ import { formatAgo } from "../../util/date";
 import VideoCard from "../VideoCard";
 import { fakeVideo as video } from "../../tests/videos";
 import { withRouter } from "../../tests/utils";
+import renderer from "react-test-renderer";
 
 describe("VideoCard", () => {
   const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
+
+  it("renders grid type correctly", () => {
+    const component = renderer.create(
+      withRouter(<Route path="/" element={<VideoCard video={video} />} />)
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it("renders list type correctly", () => {
+    const component = renderer.create(
+      withRouter(
+        <Route path="/" element={<VideoCard video={video} type="list" />} />
+      )
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 
   it("renders video item", () => {
     render(
