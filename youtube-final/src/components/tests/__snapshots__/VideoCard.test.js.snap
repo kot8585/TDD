@@ -19,7 +19,7 @@ exports[`VideoCard renders grid type correctly 1`] = `
     <p
       className="text-sm opacity-80"
     >
-      channel title
+      channelTitle
     </p>
     <p
       className="text-sm opacity-80"
@@ -49,7 +49,7 @@ exports[`VideoCard renders list type correctly 1`] = `
     <p
       className="text-sm opacity-80"
     >
-      channel title
+      channelTitle
     </p>
     <p
       className="text-sm opacity-80"
