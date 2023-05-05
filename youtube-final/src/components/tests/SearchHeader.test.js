@@ -23,9 +23,9 @@ describe("SearchHeader", () => {
         `/${keyword}`
       )
     );
-    await waitFor(() => {
-      expect(screen.findByDisplayValue(keyword)).toBeInTheDocument();
-    });
+    waitFor(() =>
+      expect(screen.findByDisplayValue(keyword)).toBeInTheDocument()
+    );
   });
 
   it("navigates to video page with keyword", async () => {
