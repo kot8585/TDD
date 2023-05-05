@@ -3,7 +3,7 @@ export const fakeVideo = {
   snippet: {
     title: "title",
     channelId: "1",
-    channelTitle: "channel title",
+    channelTitle: "channelTitle",
     publishedAt: new Date(),
     thumbnails: {
       medium: {
@@ -19,7 +19,7 @@ export const fakeVideos = [
     snippet: {
       title: "title",
       channelId: "1",
-      channelTitle: "channel title",
+      channelTitle: "channelTitle",
       publishedAt: new Date(),
       thumbnails: {
         medium: {
@@ -33,7 +33,7 @@ export const fakeVideos = [
     snippet: {
       title: "title2",
       channelId: "2",
-      channelTitle: "channel title2",
+      channelTitle: "channelTitle2",
       publishedAt: new Date(),
       thumbnails: {
         medium: {
